@@ -160,7 +160,8 @@ function preprocess(imgData)
 {
 return tf.tidy(()=>{
 	  
-    const tensor = tf.fromPixels(imgData).toFloat()
+    //const tensor = tf.fromPixels(imgData).toFloat()
+    const tensor = tf.browser.fromPixels(imgData).toFloat()
     const offset = tf.scalar(255.0);
     // Normalize the image 
     const normalized = tf.scalar(1.0).sub(tensor.div(offset));
@@ -175,7 +176,7 @@ return tf.tidy(()=>{
 async function loadModel()
 {
     //model = await tf.loadModel('model2/model.json')
-    model = await tf.loadLayersModel('model2/model.json')
+    model = await tf.loadLayersModel('model/model.json')
     //warm up 
     model.predict(tf.zeros([1,28,28,1]))
     allowDrawing()
