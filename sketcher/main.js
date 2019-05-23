@@ -242,7 +242,7 @@ function allowDrawing() {
     if (mode == 'en')
         document.getElementById('status').innerHTML = 'Model Loaded';
     else
-        document.getElementById('status').innerHTML = 'تم التحميل';
+        document.getElementById('status').innerHTML = '載入model';
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
     slider.oninput = function() {
