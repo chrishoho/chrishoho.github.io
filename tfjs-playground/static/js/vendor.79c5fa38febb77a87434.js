@@ -906,8 +906,7 @@ try{n=document.activeElement!==t}catch(t){}return n&&t.value!==e}(t,e)||function
 if(o(r)){if(r.lazy)return!1;
 if(r.number)return d(n)!==d(e);
 if(r.trim)return n.trim()!==e.trim()}return n!==e}(t,e))}var Br={create:Fr,update:Fr},Hr=b(function(t){var e={},n=/:(.+)/;
-return t.split(/;
-(?![^(]*\))/g).forEach(function(t){if(t){var r=t.split(n);
+return t.split(/;(?![^(]*\))/g).forEach(function(t){if(t){var r=t.split(n);
 r.length>1&&(e[r[0].trim()]=r[1].trim())}}),e});
 function qr(t){var e=zr(t.style);
 return t.staticStyle?S(t.staticStyle,e):e}function zr(t){return Array.isArray(t)?E(t):"string"==typeof t?Hr(t):t}var Vr,Kr=/^--/,Jr=/\s*!important$/,Gr=function(t,e,n){if(Kr.test(e))t.style.setProperty(e,n);

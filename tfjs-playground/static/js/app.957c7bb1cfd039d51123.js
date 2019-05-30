@@ -78,8 +78,7 @@ return z=tf.cast(z,"int32"),[tf.gather(C.flatten(),z),tf.gather(k.flatten(),z),t
 return new h.a(function(a,s){var r=new FileReader;
 r.onload=function(t){var s=new Image;
 s.onload=function(){var t=416,r=416;
-s.width<s.height?r=416*s.height/s.width:t=416*s.width/s.height,e.width=t,e.height=r,e.setAttribute("style","width: "+t+"px;
- height: "+r+"px"),document.getElementById("overlay").setAttribute("style","width: "+t+"px;
+s.width<s.height?r=416*s.height/s.width:t=416*s.width/s.height,e.width=t,e.height=r,e.setAttribute("style","width: "+t+"px; height: "+r+"px"),document.getElementById("overlay").setAttribute("style","width: "+t+"px;
  height: "+r+"px"),n.drawImage(s,0,0,t,r),a()},s.src=t.target.result},r.readAsDataURL(t)})},drop:function(t){var e=this;
 this.logs=null;
 var n=t.dataTransfer;
