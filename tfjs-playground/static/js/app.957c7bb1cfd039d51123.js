@@ -78,16 +78,12 @@ return z=tf.cast(z,"int32"),[tf.gather(C.flatten(),z),tf.gather(k.flatten(),z),t
 return new h.a(function(a,s){var r=new FileReader;
 r.onload=function(t){var s=new Image;
 s.onload=function(){var t=416,r=416;
-s.width<s.height?r=416*s.height/s.width:t=416*s.width/s.height,e.width=t,e.height=r,e.setAttribute("style","width: "+t+"px; height: "+r+"px"),document.getElementById("overlay").setAttribute("style","width: "+t+"px;
- height: "+r+"px"),n.drawImage(s,0,0,t,r),a()},s.src=t.target.result},r.readAsDataURL(t)})},drop:function(t){var e=this;
+s.width<s.height?r=416*s.height/s.width:t=416*s.width/s.height,e.width=t,e.height=r,e.setAttribute("style","width: "+t+"px; height: "+r+"px"),document.getElementById("overlay").setAttribute("style","width: "+t+"px; height: "+r+"px"),n.drawImage(s,0,0,t,r),a()},s.src=t.target.result},r.readAsDataURL(t)})},drop:function(t){var e=this;
 this.logs=null;
 var n=t.dataTransfer;
 n.files.length>0?(this.clearBBox(),this.drawImage(n.files[0]).then(function(){return tf.nextFrame}).then(function(){e.start()})):console.error("no file readed")},dragover:function(){},dragleave:function(){},drawBBox:function(t,e,n,a){t.width,v.size.width,t.height,v.size.height;
 var s=Math.max(e[0]*v.size.width+(t.width-v.size.width)/2,0),r=Math.max(e[1]*v.size.height+(t.height-v.size.height)/2,0),o=Math.min(e[2]*v.size.width,v.size.width),i=Math.min(e[3]*v.size.height,v.size.height),c=document.createElement("div");
-c.classList.add("bbox"),c.setAttribute("style","top: "+r+"px;
- left: "+s+"px;
- width: "+o+"px;
- height: "+i+"px");
+c.classList.add("bbox"),c.setAttribute("style","top: "+r+"px; left: "+s+"px; width: "+o+"px; height: "+i+"px");
 var l=document.createElement("div");
 l.classList.add("label"),l.innerText=n,c.appendChild(l);
 var d=document.getElementById("overlay");
