@@ -1,7 +1,7 @@
 /*restrict max size of input/output image*/
 img.cartoongan_image {
-    max-width:841px;
-    max-height:841px;
+    max-width:300px;
+    max-height:300px;
     width:auto;
     height:auto;
 }
