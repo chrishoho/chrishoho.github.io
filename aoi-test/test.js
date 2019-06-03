@@ -43,7 +43,7 @@ async function predict(style, inputImgElement) {
     logStatus("Loading Model...");
     generator = await setupGenerator(style);
 
-    logStatus("Cartoonizing images...");
+    logStatus("Rendering images...");
     let generatedImgTensor = generator.predict(inputImgTensor);
     generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
     generatedImgTensor = generatedImgTensor.reverse(axis=2);
