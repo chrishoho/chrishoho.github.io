@@ -77,7 +77,7 @@ filesElement.addEventListener('change', evt => {
     let files = evt.target.files;
         // Display thumbnails & issue call to predict each image.
 
-        // console.log("before: ", tf.memory());
+        console.log("before: ", tf.memory());
 
         for (let i = 0, f; f = files[i]; i++) {
             // Only process image files (skip non image files)
