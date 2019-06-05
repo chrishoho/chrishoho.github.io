@@ -19,6 +19,7 @@
 </head>
 <body>
   <div class="container">
+    <h4 id ="app-status" >Model Not Loaded</h4>	 
     <h1>Minimum and maximum cropped dimensions</h1>
     <h3>Image</h3>
     <div>
@@ -27,20 +28,24 @@
     <p>Maximum Width: 640, Maximum Height: 320, Minimum Width: 320, Minimum Height: 160</p>
     <p>Data: <span id="data"></span></p>
     <h3>Result</h3>
-    <p>
+    <p> 
       <button type="button" id="button">Crop</button>
     </p>
     <div id="result"></div>
   </div>
   <script src="js/cropper.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <script src="js/main2.js"></script>
   <script>
+    console.log('starting');
+    start();
     window.addEventListener('DOMContentLoaded', function () {
       var image = document.querySelector('#image');
       var data = document.querySelector('#data');
       var button = document.getElementById('button');
       var result = document.getElementById('result');
-      var minCroppedWidth = 320;
-      var minCroppedHeight = 160;
+      var minCroppedWidth = 64;
+      var minCroppedHeight = 32;
       var maxCroppedWidth = 320;
       var maxCroppedHeight = 160	;
       var cropper = new Cropper(image, {
@@ -73,7 +78,9 @@
 
       button.onclick = function () {
         result.innerHTML = '';
-        result.appendChild(cropper.getCroppedCanvas());
+        var canvas = cropper.getCroppedCanvas();
+        result.appendChild(canvas);
+        predict(canvas);
       };
     });
   </script>
