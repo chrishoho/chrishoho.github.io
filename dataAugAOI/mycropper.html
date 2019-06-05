@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/cropper.css">
   <link rel="stylesheet" href="css/main.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <!-- TFjs -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  <script src="js/main.js"></script>
 </head>
 <body>
   <!--[if lt IE 9]>
@@ -416,15 +422,15 @@
   </div>
 
   <!-- Scripts -->
+  <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<!-- Latest compiled JavaScript -->
+  <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script-->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="js/cropper.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-	console.log('starting');
-	start();
-  </script>
-  <!-- TFjs -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </body>
+<script>
+	console.log('starting');
+	start('en')
+</script>
 </html>

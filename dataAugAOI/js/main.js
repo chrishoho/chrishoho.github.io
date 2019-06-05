@@ -1,3 +1,22 @@
+  /*
+  load the model
+  */
+ async function start(test) {
+  //load the model 
+  //logStatus("Loading Model...");
+  console.log('Loading Model...');
+  document.getElementById('app-status').innerHTML = 'Loading Model...';
+  const MODEL_URL = 'tfjs_json_models/hayao/model.json';
+  console.log(MODEL_URL);
+  model = await tf.loadLayersModel(MODEL_URL);
+  
+  //warm up 
+  console.log('warm up model');
+  //model.predict(tf.zeros([1, 28, 28, 1]))
+  model.predict(tf.zeros([1, 1, 1, 3])).dispose();
+  document.getElementById('app-status').innerHTML = 'Model Loaded';
+} 
+
 window.onload = function () {
   'use strict';
 
@@ -426,23 +445,4 @@ window.onload = function () {
     return imgData
   };*/
   
-  /*
-  load the model
-  */
-  async function start() {
-    
-    //load the model 
-    //logStatus("Loading Model...");
-	  console.log('Loading Model...');
-	  document.getElementById('app-status').innerHTML = 'Loading Model...';
-    const MODEL_URL = 'tfjs_json_models/hayao/model.json';
-    console.log(MODEL_URL);
-    model = await tf.loadLayersModel(MODEL_URL);
-    
-    //warm up 
-    console.log('warm up model');
-    //model.predict(tf.zeros([1, 28, 28, 1]))
-    model.predict(tf.zeros([1, 1, 1, 3])).dispose();
-	  document.getElementById('app-status').innerHTML = 'Model Loaded';
-  } 
 };
