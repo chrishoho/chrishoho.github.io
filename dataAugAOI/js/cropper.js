@@ -190,8 +190,8 @@
     // Size limitation
     minCanvasWidth: 0,
     minCanvasHeight: 0,
-    minCropBoxWidth: 0,
-    minCropBoxHeight: 0,
+    minCropBoxWidth: 64,
+    minCropBoxHeight: 64,
     minContainerWidth: 200,
     minContainerHeight: 100,
     // Shortcuts of events
@@ -475,6 +475,7 @@
    */
 
   function getData(element, name) {
+    //console.log('getData');
     if (isObject(element[name])) {
       return element[name];
     }
@@ -493,6 +494,7 @@
    */
 
   function setData(element, name, data) {
+    //console.log('setData');
     if (isObject(data)) {
       element[name] = data;
     } else if (element.dataset) {

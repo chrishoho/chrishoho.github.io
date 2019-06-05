@@ -107,13 +107,13 @@ label.btn {
 
 .img-container {
   margin-bottom: 1rem;
-  max-height: 497px;
+  max-height: 600px;
   min-height: 200px;
 }
 
 @media (min-width: 768px) {
   .img-container {
-    min-height: 497px;
+    min-height: 297px;
   }
 }
 
@@ -144,17 +144,6 @@ label.btn {
 .preview-md {
   height: 4.5rem;
   width: 8rem;
-}
-
-.preview-sm {
-  height: 2.25rem;
-  width: 4rem;
-}
-
-.preview-xs {
-  height: 1.125rem;
-  margin-right: 0;
-  width: 2rem;
 }
 
 .docs-data > .input-group {

@@ -44,6 +44,9 @@
     </div>
 	-->
     <div class="row">
+	<h4 id ='app-status' style="display:padding:70px 0">Loading Model... </h4>	  
+    </div>
+    <div class="row">
       <div class="col-md-9">
         <!-- <h3>Demo:</h3> -->
         <div class="img-container">
@@ -54,6 +57,11 @@
         <!-- <h3>Preview:</h3> -->
         <div class="docs-preview clearfix">
           <div class="img-preview preview-lg"></div>
+        </div>
+        <!-- <h3>Preview:</h3> -->
+        <div class="docs-preview clearfix">
+			<img class="cartoongan_image" id="pregenerated_output" src="https://leemeng.tw/tfjs-apps/cartoongan/cat_shinkai.jpg"/>
+			<canvas id="output" style="display:none"></canvas>
         </div>
 
         <!-- <h3>Data:</h3> -->
@@ -102,18 +110,6 @@
             <span class="input-group-append">
               <span class="input-group-text">deg</span>
             </span>
-          </div>
-          <div class="input-group input-group-sm">
-            <span class="input-group-prepend">
-              <label class="input-group-text" for="dataScaleX">ScaleX</label>
-            </span>
-            <input type="text" class="form-control" id="dataScaleX" placeholder="scaleX">
-          </div>
-          <div class="input-group input-group-sm">
-            <span class="input-group-prepend">
-              <label class="input-group-text" for="dataScaleY">ScaleY</label>
-            </span>
-            <input type="text" class="form-control" id="dataScaleY" placeholder="scaleY">
           </div>
         </div>
       </div>
@@ -175,31 +171,13 @@
         </div>
 
         <div class="btn-group btn-group-crop">
-          <button type="button" class="btn btn-success" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
-            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })">
+          <button type="button" class="btn btn-success" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 64, &quot;maxHeight&quot;: 64 }">
+            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.getCroppedCanvas({ maxWidth: 64, maxHeight: 64 })">
               Get Cropped Canvas
             </span>
           </button>
         </div>
 
-        <!-- Show the cropped image in modal -->
-        <div class="modal fade docs-cropped" id="getCroppedCanvasModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body"></div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
-              </div>
-            </div>
-          </div>
-        </div><!-- /.modal -->
 
       </div><!-- /.docs-buttons -->
 
@@ -208,22 +186,16 @@
         <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
           <label class="btn btn-primary active">
             <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="4">
-            <span class="docs-tooltip" data-toggle="tooltip" title="128*32">
-              16:9
+            <span class="docs-tooltip" data-toggle="tooltip" title="4:1">
+              4:1
             </span>
           </label>
           <label class="btn btn-primary">
             <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="0.25">
-            <span class="docs-tooltip" data-toggle="tooltip" title="32*128">
-              4:3
+            <span class="docs-tooltip" data-toggle="tooltip" title="1:4">
+              1:4
             </span>
           </label>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="aspectRatio5" name="aspectRatio" value="NaN">
-            <span class="docs-tooltip" data-toggle="tooltip" title="128*32">
-              128*32
-            </span>
         </div>
 
       </div><!-- /.docs-toggles -->
@@ -233,9 +205,13 @@
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-  <script src="https://fengyuanchen.github.io/shared/google-analytics.js"></script>
   <script src="js/cropper.js"></script>
   <script src="js/main.js"></script>
+  <script>
+	console.log('starting');
+	start()
+  </script>
+  <!-- TFjs -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </body>
 </html>
