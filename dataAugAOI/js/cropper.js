@@ -190,8 +190,8 @@
     // Size limitation
     minCanvasWidth: 0,
     minCanvasHeight: 0,
-    minCropBoxWidth: 64,
-    minCropBoxHeight: 64,
+    minCropBoxWidth: 0,
+    minCropBoxHeight: 0,
     minContainerWidth: 200,
     minContainerHeight: 100,
     // Shortcuts of events

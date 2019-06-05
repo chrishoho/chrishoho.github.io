@@ -14,13 +14,8 @@ window.onload = function () {
   var dataRotate = document.getElementById('dataRotate');
   var dataScaleX = document.getElementById('dataScaleX');
   var dataScaleY = document.getElementById('dataScaleY');
-  // var minCroppedWidth = 16;
-  // var minCroppedHeight = 16;
-  // var maxCroppedWidth = 64;
-  // var maxCroppedHeight = 64;
   var options = {
-    aspectRatio: 128 / 32,
-    //aspectRatio: 16 / 9,
+    aspectRatio: 16 / 9,
     preview: '.img-preview',
     ready: function (e) {
       console.log(e.type);
@@ -38,17 +33,6 @@ window.onload = function () {
       var data = e.detail;
 
       console.log(e.type);
-	    // if (
-      //   data.width < minCroppedWidth
-      //   || data.height < minCroppedHeight
-      //   || data.width > maxCroppedWidth
-      //   || data.height > maxCroppedHeight
-      // ) {
-      //   cropper.setData({
-      //     width: Math.max(16, Math.min(64, data.width)),
-      //     height: Math.max(16, Math.min(64, data.height)),
-      //   });
-      // }
       dataX.value = Math.round(data.x);
       dataY.value = Math.round(data.y);
       dataHeight.value = Math.round(data.height);
@@ -226,45 +210,6 @@ window.onload = function () {
               download.download = uploadedImageName;
               download.href = result.toDataURL(uploadedImageType);
             }
-      //       //predict('hayao', inputImgElement);
-			// console.log("before predicting: ", tf.memory());
-
-			// //get the image data from the canvas 
-			// let inputImgTensor = tf.browser.fromPixels(document.getElementById('input'));
-			// //let inputImgTensor = preprocess(getImageData());
-			// //pre-process (resize & normalize ??)
-			// inputImgTensor = inputImgTensor.toFloat();
-			// inputImgTensor = inputImgTensor.reverse(axis=2);
-			// //We add a dimension to get a batch shape 
-			// inputImgTensor = tf.expandDims(inputImgTensor, 0);
-
-
-			// //get the prediction 
-			// //logStatus("Generating images...");
-			// console.log('Generating images...');
-			// document.getElementById('app-status').innerHTML = 'Generating images...';
-			// const startTime = performance.now();
-			// let generatedImgTensor = model.predict(inputImgTensor);
-			// //let generatedImgTensor = model.predict(inputImgTensor).dataSync();
-			// generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
-			// generatedImgTensor = generatedImgTensor.reverse(axis=2);
-			// generatedImgTensor = generatedImgTensor.mul(0.5).add(0.5);
-			// console.log(generatedImgTensor);
-			// generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
-			
-			// //render result
-			// //renderResult(generatedImgTensor);
-			// tf.browser.toPixels(generatedImgTensor, outputElement);
-			// inputImgTensor.dispose();
-			// const totalTime = performance.now() - startTime;
-			// console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
-			// console.log("after predicting: ", tf.memory());
-	
-			// //get the image data from the canvas 
-			// //const imgData = getImageData()
-			// //get the prediction 
-			// //const pred = model.predict(preprocess(imgData)).dataSync()
-			
           }
 
           break;
@@ -352,97 +297,5 @@ window.onload = function () {
   } else {
     inputImage.disabled = true;
     inputImage.parentNode.className += ' disabled';
-  };
-  
-  
-  /*
-  variables
-  */
-  var mode;
-  //let inputImgElement = document.getElementById('input');
-  let appStatusElement = document.getElementById('app-status');
-  let outputElement = document.getElementById('output');
-  let preOutputElement = document.getElementById('pregenerated_output');
-
-  function logStatus(message) {
-    appStatusElement.textContent = message;
-    appStatusElement.style.display = 'block';
-    outputElement.style.display = 'none';
-    preOutputElement.style.display = 'none';
-  };
-  
-  /*
-  let generator;
-  async function setupGenerator(style) {
-    const MODEL_URL = 'tfjs_json_models/hayao/model.json';
-    console.log(MODEL_URL);
-    generator = await tf.loadGraphModel(MODEL_URL);
-
-    console.log('generator loaded.');
-    console.log('warm up generator');
-    generator.predict(tf.zeros([1, 1, 1, 3])).dispose();
-    return generator;
-  };
-  
-  async function predict(style, inputImgElement) {
-    console.log("before predicting: ", tf.memory());
-
-    let inputImgTensor = tf.browser.fromPixels(inputImgElement);
-    inputImgTensor = inputImgTensor.toFloat();
-    inputImgTensor = inputImgTensor.reverse(axis=2);
-    inputImgTensor = tf.expandDims(inputImgTensor, 0);
-
-    const startTime = performance.now();
-    logStatus("Loading Model...");
-    generator = await setupGenerator(style);
-
-    logStatus("Rendering images...");
-    let generatedImgTensor = generator.predict(inputImgTensor);
-    generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
-    generatedImgTensor = generatedImgTensor.reverse(axis=2);
-    generatedImgTensor = generatedImgTensor.mul(0.5).add(0.5);
-    console.log(generatedImgTensor);
-    generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
-    renderResult(generatedImgTensor);
-    inputImgTensor.dispose();
-
-    const totalTime = performance.now() - startTime;
-    console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
-    console.log("after predicting: ", tf.memory())
-  };
-  */
-  
-  /*
-  get the current image data 
-  
-  function getImageData() {
-    //get the minimum bounding box around the drawing 
-    const mbb = getMinBox()
-
-    //get image data according to dpi 
-    const dpi = window.devicePixelRatio
-    const imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
-                                                      (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-    return imgData
-  };*/
-  
-  /*
-  load the model
-  */
-  async function start() {
-    
-    //load the model 
-    //logStatus("Loading Model...");
-	  console.log('Loading Model...');
-	  document.getElementById('app-status').innerHTML = 'Loading Model...';
-    const MODEL_URL = 'tfjs_json_models/hayao/model.json';
-    console.log(MODEL_URL);
-    model = await tf.loadLayersModel(MODEL_URL);
-    
-    //warm up 
-    console.log('warm up model');
-    //model.predict(tf.zeros([1, 28, 28, 1]))
-    model.predict(tf.zeros([1, 1, 1, 3])).dispose();
-	  document.getElementById('app-status').innerHTML = 'Model Loaded';
-  } 
+  }
 };
