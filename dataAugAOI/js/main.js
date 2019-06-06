@@ -1,12 +1,11 @@
-  /*
-  variables
-  */
-  let model;  
-  let inputImgElement = document.getElementById('input');
-  let appStatusElement = document.getElementById('app-status');
-  let outputElement = document.getElementById('output');
-   let preOutputElement = document.getElementById('pregenerated_output');
-  
+/*
+variables
+*/
+let model;  
+let inputImgElement = document.getElementById('input');
+let appStatusElement = document.getElementById('app-status');
+let outputElement = document.getElementById('output');
+let preOutputElement = document.getElementById('pregenerated_output');
   
 function logStatus(message) {
   console.log(message);
@@ -16,11 +15,17 @@ function logStatus(message) {
   preOutputElement.style.display = 'none';
 };
   
-   /*
-  load the model
-  */
+/*
+load the model
+*/
  async function start() {
-   console.log("before loading: ", tf.memory());
+   
+  inputImgElement = document.getElementById('input');
+  appStatusElement = document.getElementById('app-status');
+  outputElement = document.getElementById('output');
+  preOutputElement = document.getElementById('pregenerated_output');
+
+  console.log("before loading: ", tf.memory());
   //load the model 
   logStatus("Loading Model...");
   //const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
