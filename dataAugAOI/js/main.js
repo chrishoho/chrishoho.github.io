@@ -9,8 +9,8 @@ let preOutputElement = document.getElementById('pregenerated_output');
   
 function logStatus(message) {
   console.log(message);
-  appStatusElement.textContent = message;
-  appStatusElement.style.display = 'block';
+  //appStatusElement.textContent = message;
+  //appStatusElement.style.display = 'block';
   outputElement.style.display = 'none';
   preOutputElement.style.display = 'none';
 };
@@ -19,11 +19,6 @@ function logStatus(message) {
 load the model
 */
  async function start() {
-   
-  inputImgElement = document.getElementById('input');
-  appStatusElement = document.getElementById('app-status');
-  outputElement = document.getElementById('output');
-  preOutputElement = document.getElementById('pregenerated_output');
 
   console.log("before loading: ", tf.memory());
   //load the model 
