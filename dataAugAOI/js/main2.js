@@ -12,8 +12,8 @@
    console.log("before loading: ", tf.memory());
   //load the model 
   logStatus("Loading Model...");
-  const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
-  //const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
+  //const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
+  const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
   console.log(MODEL_URL);
   model = await tf.loadGraphModel(MODEL_URL);
   
@@ -57,6 +57,7 @@ async function predict2(imgData) {
 };
 
 function logStatus(message) {
+  console.log(message);
   appStatusElement.textContent = message;
   appStatusElement.style.display = 'block';
 };
