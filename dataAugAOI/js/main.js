@@ -58,7 +58,7 @@ async function predict(imgData) {
   //renderResult(generatedImgTensor);
   logStatus("Image Generated");
   tf.browser.toPixels(generatedImgTensor, outputElement);
-  preOutputElement.style.display = 'none';
+  //preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
 
