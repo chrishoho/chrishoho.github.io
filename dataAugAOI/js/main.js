@@ -9,7 +9,7 @@ let outputElement = document.getElementById('output');
   
 function logStatus(message) {
   console.log(message);
-  //appStatusElement.textContent = message;
+  document.getElementById('app-status').textContent = message;
   //appStatusElement.style.display = 'block';
   //outputElement.style.display = 'none';
   //preOutputElement.style.display = 'none';
@@ -84,6 +84,7 @@ window.onload = function () {
   var dataRotate = document.getElementById('dataRotate');
   var dataScaleX = document.getElementById('dataScaleX');
   var dataScaleY = document.getElementById('dataScaleY');
+  let appStatusElement = document.getElementById('app-status');
   // let outputElement = document.getElementById('output');
   // let preOutputElement = document.getElementById('pregenerated_output');
   // var minCroppedWidth = 16;
