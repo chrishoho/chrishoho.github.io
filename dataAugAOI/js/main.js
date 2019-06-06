@@ -56,6 +56,14 @@ async function predict(imgData) {
   console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
   console.log("after predicting: ", tf.memory())
 };
+  
+function logStatus(message) {
+  console.log(message);
+  appStatusElement.textContent = message;
+  appStatusElement.style.display = 'block';
+  outputElement.style.display = 'none';
+  preOutputElement.style.display = 'none';
+};
 
 window.onload = function () {
   'use strict';
@@ -384,15 +392,6 @@ window.onload = function () {
   } else {
     inputImage.disabled = true;
     inputImage.parentNode.className += ' disabled';
-  };
-  
-  
-  function logStatus(message) {
-    console.log(message);
-    appStatusElement.textContent = message;
-    appStatusElement.style.display = 'block';
-    outputElement.style.display = 'none';
-    preOutputElement.style.display = 'none';
   };
   
 };
