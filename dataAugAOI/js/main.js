@@ -5,7 +5,7 @@ let model;
 let inputImgElement = document.getElementById('input');
 let appStatusElement = document.getElementById('app-status');
 let outputElement = document.getElementById('output');
-let preOutputElement = document.getElementById('pregenerated_output');
+// let preOutputElement = document.getElementById('pregenerated_output');
   
 function logStatus(message) {
   console.log(message);
@@ -57,6 +57,7 @@ async function predict(imgData) {
   
   //renderResult(generatedImgTensor);
   logStatus("Image Generated");
+  let outputElement = document.getElementById('output');
   tf.browser.toPixels(generatedImgTensor, outputElement);
   //preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
