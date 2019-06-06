@@ -2,36 +2,33 @@
   variables
   */
   let model;  
-  //let inputImgElement = document.getElementById('input');
-  // let appStatusElement = document.getElementById('app-status');
-  // let outputElement = document.getElementById('output');
-  // let preOutputElement = document.getElementById('pregenerated_output');
+  let inputImgElement = document.getElementById('input');
+  let appStatusElement = document.getElementById('app-status');
+  let outputElement = document.getElementById('output');
+   let preOutputElement = document.getElementById('pregenerated_output');
   /*
   load the model
   */
  async function start() {
    console.log("before loading: ", tf.memory());
   //load the model 
-  //logStatus("Loading Model...");
-  console.log('Loading Model...');
-  document.getElementById('app-status').innerHTML = 'Loading Model...';
-  const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
-  //const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
+  logStatus("Loading Model...");
+  //const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
+  const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
   console.log(MODEL_URL);
   model = await tf.loadGraphModel(MODEL_URL);
   
   //warm up 
+  logStatus("Loading Model Completed");
   console.log('warm up model');
-  //model.predict(tf.zeros([1, 28, 28, 1]))
   model.predict(tf.zeros([1, 1, 1, 3])).dispose();
-  document.getElementById('app-status').innerHTML = 'Model Loaded';
 };
 
-async function predict(inputImgElement) {
+async function predict(imgData) {
   console.log("before predicting: ", tf.memory());
 
   //get the image data from the canvas 
-  let inputImgTensor = tf.browser.fromPixels(inputImgElement);
+  let inputImgTensor = tf.browser.fromPixels(imgData);
   //pre-process (resize & normalize ??)
   inputImgTensor = inputImgTensor.toFloat();
   inputImgTensor = inputImgTensor.reverse(axis=2);
@@ -39,8 +36,7 @@ async function predict(inputImgElement) {
   inputImgTensor = tf.expandDims(inputImgTensor, 0);
 
   //get the prediction 
-  console.log('Generating images...');
-  document.getElementById('app-status').innerHTML = 'Generating images...';
+  logStatus("Generating images...");
   const startTime = performance.now();
   let generatedImgTensor = model.predict(inputImgTensor);
   generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
@@ -50,9 +46,7 @@ async function predict(inputImgElement) {
   generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
   
   //renderResult(generatedImgTensor);
-  document.getElementById('app-status').innerHTML = 'Image Generated';
-  let outputElement = document.getElementById('output');
-  let preOutputElement = document.getElementById('pregenerated_output');
+  logStatus("Image Generated");
   tf.browser.toPixels(generatedImgTensor, outputElement);
   preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
@@ -62,20 +56,6 @@ async function predict(inputImgElement) {
   console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
   console.log("after predicting: ", tf.memory())
 };
-  
-/*
-get the current image data 
-
-function getImageData() {
-  //get the minimum bounding box around the drawing 
-  const mbb = getMinBox()
-
-  //get image data according to dpi 
-  const dpi = window.devicePixelRatio
-  const imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
-                                                    (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-  return imgData
-};*/
 
 window.onload = function () {
   'use strict';
@@ -309,16 +289,14 @@ window.onload = function () {
             // }
 
             //predict
-            let inputImgElement = document.getElementById('input');
-            //inputImgElement.src = "images/picture.jpg";
-            //inputImgElement.src = "https://fengyuanchen.github.io/cropperjs/images/picture.jpg";
-            //inputImgElement.src = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/images/xiaomi_fail.jpg';
-            //inputImgElement.onload = () => predict(inputImgElement);
-            predict(inputImgElement);
-
-            //get the image data from the canvas 
-            //const imgData = getImageData()
-            //predict(imgData);
+            // let inputImgElement = document.getElementById('input');
+            // //inputImgElement.src = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/images/xiaomi_fail.jpg';
+            // //inputImgElement.onload = () => predict(inputImgElement);
+            // predict(inputImgElement);
+            var canvas = cropper.getCroppedCanvas();
+            //result.appendChild(canvas);
+            //predict2(canvas);
+            predict(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height));
           }
 
           break;
@@ -410,24 +388,11 @@ window.onload = function () {
   
   
   function logStatus(message) {
+    console.log(message);
     appStatusElement.textContent = message;
     appStatusElement.style.display = 'block';
     outputElement.style.display = 'none';
     preOutputElement.style.display = 'none';
   };
-  
-  /*
-  let generator;
-  async function setupGenerator(style) {
-    const MODEL_URL = 'tfjs_json_models/hayao/model.json';
-    console.log(MODEL_URL);
-    generator = await tf.loadGraphModel(MODEL_URL);
-
-    console.log('generator loaded.');
-    console.log('warm up generator');
-    generator.predict(tf.zeros([1, 1, 1, 3])).dispose();
-    return generator;
-  };
-  */
   
 };
