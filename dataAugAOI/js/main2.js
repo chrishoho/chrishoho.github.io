@@ -3,27 +3,24 @@
   */
   let model;  
   let inputImgElement = document.getElementById('input');
-  //let appStatusElement = document.getElementById('app-status');
+  let appStatusElement = document.getElementById('app-status');
   let outputElement = document.getElementById('output');
-  //let preOutputElement = document.getElementById('pregenerated_output');
   /*
   load the model
   */
  async function start() {
    console.log("before loading: ", tf.memory());
   //load the model 
-  //logStatus("Loading Model...");
-  console.log('Loading Model...');
-  document.getElementById('app-status').innerHTML = 'Loading Model...';
+  logStatus("Loading Model...");
   const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
   //const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
   console.log(MODEL_URL);
   model = await tf.loadGraphModel(MODEL_URL);
   
   //warm up 
+  logStatus("Model Loaded");
   console.log('warm up model');
   model.predict(tf.zeros([1, 1, 1, 3])).dispose();
-  document.getElementById('app-status').innerHTML = 'Model Loaded';
 };
 
 async function predict2(imgData) {
@@ -38,8 +35,7 @@ async function predict2(imgData) {
   inputImgTensor = tf.expandDims(inputImgTensor, 0);
 
   //get the prediction 
-  console.log('Generating images...');
-  document.getElementById('app-status').innerHTML = 'Generating images...';
+  logStatus("Generating images...");
   const startTime = performance.now();
   let generatedImgTensor = model.predict(inputImgTensor);
   generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
@@ -49,15 +45,18 @@ async function predict2(imgData) {
   generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
   
   //renderResult(generatedImgTensor);
-  document.getElementById('app-status').innerHTML = 'Image Generated';
+  logStatus("Image Generated");
   let outputElement = document.getElementById('output');
-  //let preOutputElement = document.getElementById('pregenerated_output');
 	tf.browser.toPixels(generatedImgTensor, outputElement);
-  //preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
 
   const totalTime = performance.now() - startTime;
   console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
   console.log("after predicting: ", tf.memory())
+};
+
+function logStatus(message) {
+  appStatusElement.textContent = message;
+  appStatusElement.style.display = 'block';
 };

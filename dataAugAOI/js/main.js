@@ -1,7 +1,7 @@
   /*
   variables
   */
-  var model;  
+  let model;  
   //let inputImgElement = document.getElementById('input');
   // let appStatusElement = document.getElementById('app-status');
   // let outputElement = document.getElementById('output');
