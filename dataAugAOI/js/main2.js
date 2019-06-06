@@ -1,15 +1,15 @@
-  /*
-  variables
-  */
-  let model;  
-  let inputImgElement = document.getElementById('input');
-  let appStatusElement = document.getElementById('app-status');
-  let outputElement = document.getElementById('output');
+/*
+variables
+*/
+let model;  
+let inputImgElement = document.getElementById('input');
+let appStatusElement = document.getElementById('app-status');
+let outputElement = document.getElementById('output');
 
-  /*
-  load the model
-  */
- async function start() {
+/*
+load the model
+*/
+async function start() {
    console.log("before loading: ", tf.memory());
   //load the model 
   logStatus("Loading Model...");
