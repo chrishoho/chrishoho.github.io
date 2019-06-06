@@ -3,9 +3,9 @@
   */
   var mode;  
   let inputImgElement = document.getElementById('input');
-  let appStatusElement = document.getElementById('app-status');
+  //let appStatusElement = document.getElementById('app-status');
   let outputElement = document.getElementById('output');
-  let preOutputElement = document.getElementById('pregenerated_output');
+  //let preOutputElement = document.getElementById('pregenerated_output');
   /*
   load the model
   */
@@ -49,9 +49,12 @@ async function predict2(imgData) {
   generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
   
   //renderResult(generatedImgTensor);
+  document.getElementById('app-status').innerHTML = 'Image Generated';
+  let outputElement = document.getElementById('output');
+  //let preOutputElement = document.getElementById('pregenerated_output');
 	tf.browser.toPixels(generatedImgTensor, outputElement);
   //preOutputElement.style.display = 'none';
-  //outputElement.style.display = 'inline-block';
+  outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
 
   const totalTime = performance.now() - startTime;
