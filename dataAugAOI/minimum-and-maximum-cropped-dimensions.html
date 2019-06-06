@@ -23,7 +23,7 @@
     <h1>Minimum and maximum cropped dimensions</h1>
     <h3>Image</h3>
     <div>
-      <img id="image" src="images/picture.jpg" alt="Picture">
+      <img id="image" src="images/picture.jpg" alt="Picture" crossorigin="anonymous">
     </div>
     <p>Maximum Width: 640, Maximum Height: 320, Minimum Width: 320, Minimum Height: 160</p>
     <p>Data: <span id="data"></span></p>
@@ -80,7 +80,8 @@
         result.innerHTML = '';
         var canvas = cropper.getCroppedCanvas();
         result.appendChild(canvas);
-        predict(canvas);
+        //predict2(canvas);
+        predict2(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height));
       };
     });
   </script>

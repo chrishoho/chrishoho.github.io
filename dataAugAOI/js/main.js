@@ -2,10 +2,10 @@
   variables
   */
   var mode;  
-  let inputImgElement = document.getElementById('input');
-  let appStatusElement = document.getElementById('app-status');
-  let outputElement = document.getElementById('output');
-  let preOutputElement = document.getElementById('pregenerated_output');
+  //let inputImgElement = document.getElementById('input');
+  // let appStatusElement = document.getElementById('app-status');
+  // let outputElement = document.getElementById('output');
+  // let preOutputElement = document.getElementById('pregenerated_output');
   /*
   load the model
   */
@@ -50,7 +50,10 @@ async function predict(inputImgElement) {
   generatedImgTensor = tf.clipByValue(generatedImgTensor, 0, 1);
   
   //renderResult(generatedImgTensor);
-	tf.browser.toPixels(generatedImgTensor, outputElement);
+  document.getElementById('app-status').innerHTML = 'Image Generated';
+  let outputElement = document.getElementById('output');
+  let preOutputElement = document.getElementById('pregenerated_output');
+  tf.browser.toPixels(generatedImgTensor, outputElement);
   preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
@@ -90,6 +93,8 @@ window.onload = function () {
   var dataRotate = document.getElementById('dataRotate');
   var dataScaleX = document.getElementById('dataScaleX');
   var dataScaleY = document.getElementById('dataScaleY');
+  // let outputElement = document.getElementById('output');
+  // let preOutputElement = document.getElementById('pregenerated_output');
   // var minCroppedWidth = 16;
   // var minCroppedHeight = 16;
   // var maxCroppedWidth = 64;
@@ -307,8 +312,10 @@ window.onload = function () {
             let inputImgElement = document.getElementById('input');
             //inputImgElement.src = "images/picture.jpg";
             //inputImgElement.src = "https://fengyuanchen.github.io/cropperjs/images/picture.jpg";
-            inputImgElement.onload = () => predict(inputImgElement);
-            
+            //inputImgElement.src = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/images/xiaomi_fail.jpg';
+            //inputImgElement.onload = () => predict(inputImgElement);
+            predict(inputImgElement);
+
             //get the image data from the canvas 
             //const imgData = getImageData()
             //predict(imgData);

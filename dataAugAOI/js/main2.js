@@ -26,7 +26,7 @@
   document.getElementById('app-status').innerHTML = 'Model Loaded';
 };
 
-async function predict(imgData) {
+async function predict2(imgData) {
   console.log("before predicting: ", tf.memory());
 
   //get the image data from the canvas 
