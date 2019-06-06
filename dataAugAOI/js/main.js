@@ -5,14 +5,14 @@ let model;
 let inputImgElement = document.getElementById('input');
 let appStatusElement = document.getElementById('app-status');
 let outputElement = document.getElementById('output');
-// let preOutputElement = document.getElementById('pregenerated_output');
+//let preOutputElement = document.getElementById('pregenerated_output');
   
 function logStatus(message) {
   console.log(message);
   document.getElementById('app-status').textContent = message;
-  //appStatusElement.style.display = 'block';
-  //outputElement.style.display = 'none';
-  //preOutputElement.style.display = 'none';
+  document.getElementById('app-status').style.display = 'block';
+  document.getElementById('output').style.display = 'none';
+  //document.getElementById('pregenerated_output').style.display = 'none';
 };
   
 /*
@@ -58,6 +58,7 @@ async function predict(imgData) {
   //renderResult(generatedImgTensor);
   logStatus("Image Generated");
   let outputElement = document.getElementById('output');
+  //let preOutputElement = document.getElementById('pregenerated_output');
   tf.browser.toPixels(generatedImgTensor, outputElement);
   //preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
