@@ -5,14 +5,12 @@ let model;
 let inputImgElement = document.getElementById('input');
 let appStatusElement = document.getElementById('app-status');
 let outputElement = document.getElementById('output');
-//let preOutputElement = document.getElementById('pregenerated_output');
   
 function logStatus(message) {
   console.log(message);
   document.getElementById('app-status').textContent = message;
   document.getElementById('app-status').style.display = 'block';
   document.getElementById('output').style.display = 'none';
-  //document.getElementById('pregenerated_output').style.display = 'none';
 };
   
 /*
@@ -24,8 +22,8 @@ load the model
   //load the model 
   logStatus("Loading Model...");
   document.getElementById('app-status').textContent = "Loading Model...";
-  //const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
-  const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
+  const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
+  //const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
   console.log(MODEL_URL);
   model = await tf.loadGraphModel(MODEL_URL);
   
@@ -49,6 +47,7 @@ async function predict(imgData) {
 
   //get the prediction 
   logStatus("Generating images...");
+  document.getElementById('app-status').textContent = "Generating images...";
   const startTime = performance.now();
   let generatedImgTensor = model.predict(inputImgTensor);
   generatedImgTensor = tf.squeeze(generatedImgTensor, 0);
@@ -59,10 +58,9 @@ async function predict(imgData) {
   
   //renderResult(generatedImgTensor);
   logStatus("Image Generated");
+  document.getElementById('app-status').textContent = "Image Generated";
   let outputElement = document.getElementById('output');
-  //let preOutputElement = document.getElementById('pregenerated_output');
   tf.browser.toPixels(generatedImgTensor, outputElement);
-  //preOutputElement.style.display = 'none';
   outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
 
