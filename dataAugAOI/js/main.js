@@ -6,7 +6,17 @@
   let appStatusElement = document.getElementById('app-status');
   let outputElement = document.getElementById('output');
    let preOutputElement = document.getElementById('pregenerated_output');
-  /*
+  
+  
+function logStatus(message) {
+  console.log(message);
+  appStatusElement.textContent = message;
+  appStatusElement.style.display = 'block';
+  outputElement.style.display = 'none';
+  preOutputElement.style.display = 'none';
+};
+  
+   /*
   load the model
   */
  async function start() {
@@ -55,14 +65,6 @@ async function predict(imgData) {
   const totalTime = performance.now() - startTime;
   console.log(`Transformation done in ${Math.floor(totalTime)}ms`);
   console.log("after predicting: ", tf.memory())
-};
-  
-function logStatus(message) {
-  console.log(message);
-  appStatusElement.textContent = message;
-  appStatusElement.style.display = 'block';
-  outputElement.style.display = 'none';
-  preOutputElement.style.display = 'none';
 };
 
 window.onload = function () {
