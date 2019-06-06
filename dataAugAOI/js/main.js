@@ -23,6 +23,7 @@ load the model
   console.log("before loading: ", tf.memory());
   //load the model 
   logStatus("Loading Model...");
+  document.getElementById('app-status').textContent = "Loading Model...";
   //const MODEL_URL = 'https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/dataAugAOI/tfjs_json_models/shinkai/model.json';
   const MODEL_URL = 'tfjs_json_models/shinkai/model.json';
   console.log(MODEL_URL);
@@ -30,6 +31,7 @@ load the model
   
   //warm up 
   logStatus("Loading Model Completed");
+  document.getElementById('app-status').textContent = "Loading Model Completed";
   console.log('warm up model');
   model.predict(tf.zeros([1, 1, 1, 3])).dispose();
 };
