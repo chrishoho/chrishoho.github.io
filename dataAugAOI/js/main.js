@@ -11,8 +11,8 @@ function logStatus(message) {
   console.log(message);
   //appStatusElement.textContent = message;
   //appStatusElement.style.display = 'block';
-  outputElement.style.display = 'none';
-  preOutputElement.style.display = 'none';
+  //outputElement.style.display = 'none';
+  //preOutputElement.style.display = 'none';
 };
   
 /*
