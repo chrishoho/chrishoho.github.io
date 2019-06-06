@@ -5,6 +5,7 @@
   let inputImgElement = document.getElementById('input');
   let appStatusElement = document.getElementById('app-status');
   let outputElement = document.getElementById('output');
+
   /*
   load the model
   */
@@ -18,7 +19,7 @@
   model = await tf.loadGraphModel(MODEL_URL);
   
   //warm up 
-  logStatus("Model Loaded");
+  logStatus("Loading Model Completed");
   console.log('warm up model');
   model.predict(tf.zeros([1, 1, 1, 3])).dispose();
 };
@@ -46,7 +47,6 @@ async function predict2(imgData) {
   
   //renderResult(generatedImgTensor);
   logStatus("Image Generated");
-  let outputElement = document.getElementById('output');
 	tf.browser.toPixels(generatedImgTensor, outputElement);
   outputElement.style.display = 'inline-block';
   inputImgTensor.dispose();
