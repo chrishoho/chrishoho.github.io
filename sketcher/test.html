@@ -96,6 +96,9 @@ function getFrame()
 	//get the predictions, top 5 
 	const pred = model.predict(preprocess(imgData)).dataSync()
 	const indices = findIndicesOfMax(pred, 5)
+  for (var i = 0; i < indices.length; i++) {
+    console.log(pred[indices[i]])
+  }
 	const probs  = findTopValues(pred, 5)
 	const symbols = getSymbols(indices)
   for (var i = 0; i < symbols.length; i++) {
@@ -120,7 +123,8 @@ function getSymbols(indices)
 async function loadDict()
 {
   await $.ajax({
-  url: 'model/class_names.txt',
+  //url: 'model/class_names.txt',
+  url: 'https://chrishoho.github.io/sketcher/model/class_names.txt',
   dataType: 'text',}).done(success);
 }
 	  
@@ -181,8 +185,7 @@ async function loadModel()
 {
     //model = await tf.loadModel('model2/model.json')
     //model = await tf.loadLayersModel('model/model.json')
-    //model = await tf.loadLayersModel('https://chrishoho.github.io/sketcher/model/model.json')
-    model = await tf.loadLayersModel('https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/sketcher/model/model.json')
+    model = await tf.loadLayersModel('https://chrishoho.github.io/sketcher/model/model.json')
     //warm up 
     model.predict(tf.zeros([1,28,28,1]))
     allowDrawing()
