@@ -96,11 +96,12 @@ function getFrame()
 	//get the predictions, top 5 
 	const pred = model.predict(preprocess(imgData)).dataSync()
 	const indices = findIndicesOfMax(pred, 5)
-  for (var i = 0; i < indices.length; i++) {
-
-  }
 	const probs  = findTopValues(pred, 5)
 	const symbols = getSymbols(indices)
+  for (var i = 0; i < symbols.length; i++) {
+    pconsole.log(symbols[i])
+    pconsole.log(probs[i])
+  }
 	//set the table 
 	setTable(symbols, probs)
     }
