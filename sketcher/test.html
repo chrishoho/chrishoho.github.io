@@ -99,8 +99,8 @@ function getFrame()
 	const probs  = findTopValues(pred, 5)
 	const symbols = getSymbols(indices)
   for (var i = 0; i < symbols.length; i++) {
-    pconsole.log(symbols[i])
-    pconsole.log(probs[i])
+    console.log(symbols[i])
+    console.log(probs[i])
   }
 	//set the table 
 	setTable(symbols, probs)
