@@ -94,9 +94,11 @@ function getFrame()
 	const dpi = window.devicePixelRatio
 	imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi, (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
 	//get the predictions, top 5 
-	//const pred = model.predict(preprocess(imgData)).dataSync()
-	const pred = model.predict(preprocess(imgData))
+	const pred = model.predict(preprocess(imgData)).dataSync()
 	const indices = findIndicesOfMax(pred, 5)
+  for (var i = 0; i < indices.length; i++) {
+
+  }
 	const probs  = findTopValues(pred, 5)
 	const symbols = getSymbols(indices)
 	//set the table 
@@ -117,7 +119,7 @@ function getSymbols(indices)
 async function loadDict()
 {
   await $.ajax({
-  url: 'model2/class_names.txt',
+  url: 'model/class_names.txt',
   dataType: 'text',}).done(success);
 }
 	  
@@ -177,7 +179,9 @@ return tf.tidy(()=>{
 async function loadModel()
 {
     //model = await tf.loadModel('model2/model.json')
-    model = await tf.loadLayersModel('model/model.json')
+    //model = await tf.loadLayersModel('model/model.json')
+    //model = await tf.loadLayersModel('https://chrishoho.github.io/sketcher/model/model.json')
+    model = await tf.loadLayersModel('https://raw.githubusercontent.com/chrishoho/chrishoho.github.io/master/sketcher/model/model.json')
     //warm up 
     model.predict(tf.zeros([1,28,28,1]))
     allowDrawing()
